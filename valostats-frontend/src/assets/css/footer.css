@@ -1,0 +1,19 @@
+@import "root.css";
+
+#footer {
+    background-color: var(--gray-color);
+
+    width: -moz-available;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+}
+
+#footer-text {
+    text-align: center;
+
+    font-family: var(--second-font);
+    font-size: 18px;
+    color: var(--white-color);
+}

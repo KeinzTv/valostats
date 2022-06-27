@@ -1,0 +1,204 @@
+@import "root.css";
+
+#header {
+    background-color: var(--gray-color);
+
+    width: -moz-available;
+    height: 100px;
+
+    display: flex;
+    justify-content: space-around;
+
+    transition: 0.3s ease-in-out;
+}
+
+#header-logos {
+    display: flex;
+
+    gap: 40px;
+
+    align-items: center;
+}
+
+#riot-logo {
+    width: 70px;
+}
+
+#header-separation {
+    background-color: var(--white-color);
+
+    width: 3px;
+    height: 38px;
+
+    border-radius: 10px;
+}
+
+#valorant-logo {
+    width: 45px;
+}
+
+#header-list {
+    display: flex;
+    align-items: center;
+
+    padding-left: 80px;
+    list-style: none;
+
+    gap: 50px;
+}
+
+.header-link {
+    font-family: var(--second-font);
+    font-weight: bold;
+    font-size: 15px;
+
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.header-link-burger {
+    font-family: var(--second-font);
+    font-weight: bold;
+    font-size: 15px;
+
+    transition: 0.3s ease-in-out;
+}
+
+#btn-container {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    margin-left: auto;
+    padding-right: 30px;
+
+    font-family: var(--main-font);
+    font-size: 12px;
+}
+
+#btn-container button {
+    position: relative;
+
+    all: unset;
+    cursor: pointer;
+}
+
+#btn-container button div {
+    position: relative;
+    width: auto;
+    height: auto;
+
+    background: var(--red-color);
+    display: inline-block;
+    overflow: hidden;
+
+    padding: 15px 0;
+}
+
+#btn-container button div a {
+    position: relative;
+    
+    color: var(--white-color);
+    text-transform: uppercase;
+    padding: 10px 20px;
+}
+
+#btn-container button div span {
+    position: absolute;
+    width: 120%;
+    height: 110%;
+
+    transform: translate(-100%, -18px);
+
+    background-color: var(--gray-color);
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+    transition: 0.3s ease-in-out;
+}
+
+#btn-container button:hover div span {
+    transform: translate(-10%, -18px);
+}
+
+#menu {
+    font-size: 50px;
+    color: var(--white-color);
+
+    cursor: pointer;
+
+    transition: 0.3s ease-in-out;
+}
+
+#menu:hover {
+    color: var(--red-color);
+}
+
+.menu-active #menu {
+    transform: rotate(-135deg);
+
+    color: var(--red-color);
+}
+
+.menu-active #header-list-burger {
+    display: flex;
+    justify-content: space-around;
+
+    transform: translateY(-80px);
+
+    padding: 0;
+    opacity: 1;
+}
+
+.menu-active #header {
+    align-items: center;
+    padding-bottom: 100px;
+
+    height: 200px !important;
+}
+
+#menu-container  {
+    display: none;
+
+    align-items: center;
+}
+
+.active {
+    color: var(--red-color);
+
+    border-bottom: 2px solid #FF4656;
+}
+
+#header-list-burger {
+    display: flex;
+    justify-content: space-around;
+    opacity: 0;
+
+    transition: .3s ease-in-out;
+}
+
+@media (max-width: 1050px) {
+    #btn-container {
+        display: none;
+    }
+}
+
+@media (min-width: 1050px) {
+    #header-list-burger {
+        display: none;
+    }
+}
+
+@media (max-width: 780px) {
+    #header {
+        justify-content: space-between;
+    }
+
+    #header-list {
+        display: none;
+    }
+
+    #menu-container {
+        display: flex;
+
+        margin-right: 40px;
+    }
+}

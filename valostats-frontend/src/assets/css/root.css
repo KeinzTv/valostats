@@ -1,0 +1,100 @@
+@font-face {
+    font-family: "Drukwide";
+    src: url("../fonts/druk_wide.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+}
+
+
+:root {
+    --main-font: Drukwide, Arial, sans-serif;
+    --second-font: Montserrat, Arial, sans-serif;
+    --white-color: #FFFFFF;
+    --light-gray: #C4C4C4;
+    --mid-gray: #959595;
+    --medium-gray: #202932;
+    --gray-color: #0f1923;
+    --black-color: #000000;
+    --red-color: #FF4656;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+
+    overflow-x: hidden;
+
+    background-color: var(--gray-color);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+
+    color: var(--white-color);
+}
+
+a:hover {
+    transition: .3s ease-in-out;
+
+    color: var(--red-color);
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--gray-color);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--white-color);
+    border-radius: 20px;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,106 @@
+@import "root.css";
+
+#agents-container {
+    border: 2px var(--red-color) solid;
+
+    width: 396px;
+    height: 400px;
+}
+
+#agents-bottom {
+    background-color: var(--red-color);
+    width: 396px;
+    height: 60px;
+
+    transform: translateY(-30px) translateX(-2px);
+}
+
+#agents-name {
+    position: absolute;
+
+    font-family: var(--main-font);
+    font-size: 20px;
+    color: var(--white-color);
+
+    transform: translateY(300px);
+    margin-left: 10px;
+}
+
+#agents-subtitle {
+    position: absolute;
+
+    font-family: var(--main-font);
+    font-size: 15px;
+    color: var(--light-gray);
+
+    transform: translateY(335px);
+    margin-left: 10px;
+}
+
+#agents-container:hover #more-text {
+    transform: translate(-50px, 20px);
+}
+
+#agents-container:hover #arrow-icon {
+    opacity: 1;
+
+    animation: arrow-animation 2s infinite ease-in-out;
+}
+
+@keyframes arrow-animation {
+    from {
+        transform: translate(3px, -22px);
+    }
+
+    50% {
+        transform: translate(-3px, -22px);
+    }
+
+    to {
+        transform: translate(3px, -22px);
+    }
+}
+
+#abilities-icon {
+    width: 56px;
+
+}
+
+#icons-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+
+    position: absolute;
+
+    transform: translate(270px, -370px);
+}
+
+/*Loading*/
+#lds-ripple-map {
+    display: inline-block;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    left: 0;
+    right: 0;
+
+    top: 60%;
+    transform: translateY(-44%);
+}
+#lds-ripple-map div {
+    position: absolute;
+    border: 5px solid var(--red-color);
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+#lds-ripple-map div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+/**/
