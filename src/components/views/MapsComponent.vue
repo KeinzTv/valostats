@@ -5,7 +5,7 @@
     </video>
     <div id="lds-ripple-map"><div></div><div></div></div>
     <p id="maps-title">MAPS</p>
-    <input type="text" placeholder="Search for a map" id="maps-input" v-on:keyup="search()">
+    <input type="text" placeholder="Search for a map" id="maps-input" autocomplete="off" v-on:keyup="search()">
     <ul id="map-list">
       <li v-for="item in maps" :key="item">
         <a href="#">
@@ -61,7 +61,7 @@ export default {
 
       if (searchValue !== "") {
         mapCards.forEach((card) => {
-          if (!card.firstChild.innerText.toUpperCase().includes(searchValue)) {
+          if (!card.firstChild.innerText.toUpperCase().startsWith(searchValue)) {
             card.style.display = "none";
           } else {
             card.style.display = "block";

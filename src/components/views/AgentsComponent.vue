@@ -5,7 +5,7 @@
     </video>
     <div id="lds-ripple-map"><div></div><div></div></div>
     <p id="maps-title">AGENTS</p>
-    <input type="text" placeholder="Search for an agent" id="agent-input" v-on:keyup="search()">
+    <input type="text" placeholder="Search for an agent" id="agent-input" autocomplete="off" v-on:keyup="search()">
     <ul id="agent-list">
       <li v-for="agent in agents" :key="agent">
         <a href="#">
@@ -60,7 +60,7 @@ export default {
 
       if (searchValue !== "") {
         agentCards.forEach((card) => {
-          if (!card.firstChild.innerText.toUpperCase().includes(searchValue)) {
+          if (!card.firstChild.innerText.toUpperCase().startsWith(searchValue)) {
             card.style.display = "none";
           } else {
             card.style.display = "block";

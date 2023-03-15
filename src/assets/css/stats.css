@@ -309,7 +309,7 @@
 
 /*Loading*/
 #lds-ripple-stats {
-    display: inline-block;
+    display: none;
     position: absolute;
     width: 80px;
     height: 80px;
@@ -442,7 +442,7 @@
 .win::after {
     content: "";
     position: absolute;
-    left: 49%;
+    margin-left: 325px;
 
     width: 325px;
     height: 80px;
@@ -466,7 +466,7 @@
 .lose::after {
     content: "";
     position: absolute;
-    left: 49%;
+    margin-left: 325px;
 
     width: 325px;
     height: 80px;

@@ -10,12 +10,10 @@ const port = 8081;
 
 const cors = require('cors');
 
-const https = require('node:https');
+const https = require('https');
 https.createServer(app);
 
 app.use(cors(), express.json());
-
-console.log(`Starting backend on port ${port}`);
 
 app.get('/api/agents', (req, res) => {
     let agents = [];

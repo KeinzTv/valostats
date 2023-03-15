@@ -5,7 +5,7 @@
     </video>
     <div id="lds-ripple-map"><div></div><div></div></div>
     <p id="weapons-title">WEAPONS</p>
-    <input type="text" placeholder="Search for a weapon" id="weapon-input" v-on:keyup="search()">
+    <input type="text" placeholder="Search for a weapon" id="weapon-input" autocomplete="off" v-on:keyup="search()">
     <ul id="weapon-list">
       <li v-for="item in weaponsList" :key="item">
         <a href="#">
@@ -56,7 +56,7 @@ export default {
 
       if (searchValue !== "") {
         weaponCards.forEach((card) => {
-          if (!card.children[1].innerText.toUpperCase().includes(searchValue)) {
+          if (!card.children[1].innerText.toUpperCase().startsWith(searchValue)) {
             card.style.display = "none";
           } else {
             card.style.display = "block";

@@ -177,63 +177,129 @@ export default {
 
       if (region === "eu") {
         selector.transform = "translateX(-74px)";
-        this.region = "eu";
-        this.reloadLeaderboard();
+        this.region = region;
+
+        if (sessionStorage.getItem("leaderboard/" + region) !== null && sessionStorage.getItem("leaderboard/" + region).split(',').length === 20) {
+          let playerList = [];
+
+          for (let player of sessionStorage.getItem("leaderboard/" + region).split(',')) {
+            playerList.push({
+              leaderboardRank : player.split('#')[0],
+              gameName : player.split('#')[1],
+              tagLine : player.split('#')[2]
+            })
+          }
+
+          this.leaderboardsList = playerList;
+        } else {
+          this.reloadLeaderboard(region);
+        }
       }
 
       if (region === "na") {
         selector.transform = "translateX(-25px)";
-        this.region = "na";
-        this.reloadLeaderboard();
+        this.region = region;
+
+        if (sessionStorage.getItem("leaderboard/" + region) !== null && sessionStorage.getItem("leaderboard/" + region).split(',').length === 20) {
+          let playerList = [];
+
+          for (let player of sessionStorage.getItem("leaderboard/" + region).split(',')) {
+            playerList.push({
+              leaderboardRank : player.split('#')[0],
+              gameName : player.split('#')[1],
+              tagLine : player.split('#')[2]
+            })
+          }
+
+          this.leaderboardsList = playerList;
+        } else {
+          this.reloadLeaderboard(region);
+        }
       }
 
       if (region === "ap") {
         selector.transform = "translateX(25px)";
-        this.region = "ap"
-        this.reloadLeaderboard();
+        this.region = region;
+
+        if (sessionStorage.getItem("leaderboard/" + region) !== null && sessionStorage.getItem("leaderboard/" + region).split(',').length === 20) {
+          let playerList = [];
+
+          for (let player of sessionStorage.getItem("leaderboard/" + region).split(',')) {
+            playerList.push({
+              leaderboardRank : player.split('#')[0],
+              gameName : player.split('#')[1],
+              tagLine : player.split('#')[2]
+            })
+          }
+
+          this.leaderboardsList = playerList;
+        } else {
+          this.reloadLeaderboard(region);
+        }
       }
 
       if (region === "kr") {
         selector.transform = "translateX(74px)";
-        this.region = "kr";
-        this.reloadLeaderboard();
+        this.region = region;
+
+        if (sessionStorage.getItem("leaderboard/" + region) !== null && sessionStorage.getItem("leaderboard/" + region).split(',').length === 20) {
+          let playerList = [];
+
+          for (let player of sessionStorage.getItem("leaderboard/" + region).split(',')) {
+            playerList.push({
+              leaderboardRank : player.split('#')[0],
+              gameName : player.split('#')[1],
+              tagLine : player.split('#')[2]
+            })
+          }
+
+          this.leaderboardsList = playerList;
+        } else {
+          this.reloadLeaderboard(region);
+        }
       }
     },
 
-    reloadLeaderboard() {
+    reloadLeaderboard(region) {
       this.loading();
-      this.leaderboardsList = null
+      this.leaderboardsList = null;
 
-      let playerList = [];
+      axios.get(config.api_url + "leaderboard/" + region + "/20")
+          .then((res) => {
+            if (res.status === 200) {
+              this.leaderboardsList = res.data.data;
 
-      document.querySelectorAll(".header-link")[0].classList.add("active");
-      document.querySelectorAll('.header-link-burger')[0].classList.add("active");
-
-      if (sessionStorage.getItem('leaderboard' + this.region) === null) {
-        axios.get(config.api_url + "leaderboard/" + this.region + "/20")
-            .then((res) => {
-              if (res.status === 200) {
-                this.leaderboardsList = res.data.data;
-
-                for (let player of this.leaderboardsList) {
-                  playerList.push({
-                    gameName : player.gameName,
-                    tagLine : player.tagLine,
-                    place: player.leaderboardRank
-                  });
-                }
-
-                sessionStorage.setItem('leaderboard/' + this.region, playerList)
-                this.loaded();
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-      } else {
-        this.leaderboardsList = sessionStorage.getItem('leaderboard/' + this.region)
-      }
+              this.loaded();
+              this.saveLeaderboard(region);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          })
     },
+
+    saveLeaderboard(region) {
+      sessionStorage.removeItem("leaderboard/" + region);
+
+      this.leaderboardsList.forEach((player) => {
+        let oldSavedLeaderboard = sessionStorage.getItem("leaderboard/" + region);
+
+        if (oldSavedLeaderboard !== null) {
+          if (player.gameName !== "") {
+            sessionStorage.setItem("leaderboard/" + region, oldSavedLeaderboard + "," + player.leaderboardRank + "#" + player.gameName + "#" + player.tagLine);
+          } else {
+            sessionStorage.setItem("leaderboard/" + region, oldSavedLeaderboard + "," + player.leaderboardRank + "#");
+          }
+        } else {
+          if (player.gameName !== "") {
+            sessionStorage.setItem("leaderboard/" + region, player.leaderboardRank + "#" + player.gameName + "#" + player.tagLine);
+          } else {
+            sessionStorage.setItem("leaderboard/" + region, player.leaderboardRank + "#");
+          }
+        }
+      })
+    },
+
     loading() {
       document.getElementById('lds-ripple-stats').style.display = "inline-block";
     },
@@ -244,25 +310,24 @@ export default {
   },
 
   mounted() {
-    this.loading();
-
     document.querySelectorAll(".header-link")[0].classList.add("active");
-    document.querySelectorAll('.header-link-burger')[0].classList.add("active");
+    document.querySelectorAll('.header-link-burger')[0].classList.add("active")
 
-    if(sessionStorage.getItem('leaderboard' + this.region) === null) {
-      axios.get(config.api_url + "leaderboard/" + this.region + "/20")
-          .then((res) => {
-            if (res.status === 200) {
-              this.leaderboardsList = res.data.data;
-              sessionStorage.setItem('leaderboard/' + this.region, this.leaderboardsList)
-              this.loaded();
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          })
+    const region = this.region;
+    if (sessionStorage.getItem("leaderboard/" + region) !== null && sessionStorage.getItem("leaderboard/" + region).split(',').length === 20) {
+      let playerList = [];
+
+      for (let player of sessionStorage.getItem("leaderboard/" + region).split(',')) {
+        playerList.push({
+          leaderboardRank : player.split('#')[0],
+          gameName : player.split('#')[1],
+          tagLine : player.split('#')[2]
+        })
+      }
+
+      this.leaderboardsList = playerList;
     } else {
-      this.leaderboardsList = sessionStorage.getItem('leaderboard/' + this.region)
+      this.reloadLeaderboard(region);
     }
   }
 }

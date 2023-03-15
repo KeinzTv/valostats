@@ -4,7 +4,7 @@
     border: 2px var(--red-color) solid;
 
     width: 396px;
-    height: 400px;
+    height: 420px;
 }
 
 #agents-bottom {
@@ -12,7 +12,7 @@
     width: 396px;
     height: 60px;
 
-    transform: translateY(-30px) translateX(-2px);
+    transform: translate(-2px, -15px);
 }
 
 #agents-name {
@@ -22,7 +22,7 @@
     font-size: 20px;
     color: var(--white-color);
 
-    transform: translateY(300px);
+    transform: translateY(280px);
     margin-left: 10px;
 }
 
@@ -33,7 +33,7 @@
     font-size: 15px;
     color: var(--light-gray);
 
-    transform: translateY(335px);
+    transform: translateY(315px);
     margin-left: 10px;
 }
 
@@ -74,7 +74,7 @@
 
     position: absolute;
 
-    transform: translate(270px, -370px);
+    transform: translate(270px, -340px);
 }
 
 /*Loading*/
